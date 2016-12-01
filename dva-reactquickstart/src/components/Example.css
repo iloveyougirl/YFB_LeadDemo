@@ -1,0 +1,53 @@
+/*导航条基本信息*/
+.allWrap{
+    background-color:#F4F4F4;
+    width:100%;
+}
+.navWrap{
+    position: absolute;
+    height:100%;
+    width:240px;
+    background-color:#323232;
+    text-align: center;
+}
+
+/*头部信息*/
+.headerwrap{
+    height:70px;
+    background-color:white;
+}
+.helpwrap{
+    position: absolute;
+    /* left: 309px; */
+    right: 10%;
+    top: 3%;
+}
+.settings{
+    font-size:15px;
+    color:#666666;
+    display: inline-block;
+    padding: 0 10px;
+}
+/*显示的路由信息*/
+.showwrap{
+    background-color: white;
+    /* position: relative; */
+    position: absolute;
+    left: 263px;
+    top: 93px;
+    /* right: 2%; */
+    /* height: 83%; */
+    width: 1600px;
+    padding-bottom: 30px;
+    border-radius: 6px;
+}
+.picture{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    /* overflow: hidden; */
+    background-color: yellow;
+}

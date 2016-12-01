@@ -1,0 +1,24 @@
+.title{
+    width: 180px;
+    height: 32px;
+    background-color: #FF8800;
+    color: white;
+    /* cursor: pointer; */
+    border-radius: 5px;
+    text-align: center;
+    line-height: 32px;
+    margin: 20px auto;
+}
+/*技术支持*/
+.textwrap{
+    position:absolute;
+    bottom: 2em;
+    left: 6em;
+}
+.text{
+    color: #FF8800;
+    font-size:13px;
+}
+.textcontent{
+    font-size:13px;
+}

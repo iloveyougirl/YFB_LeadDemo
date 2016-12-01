@@ -1,0 +1,14 @@
+.tablewrap{
+    margin-top:10px;
+    border:1px solid #E9e9e9;
+    padding:10px;
+    border-radius:7px;
+}
+.searchwrap{
+    margin-top:40px;
+    padding-left:45%;
+}
+.listwrap{
+    width:95%;
+    margin:10px auto 0;
+}
