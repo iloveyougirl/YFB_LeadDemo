@@ -18,7 +18,9 @@ const Example = React.createClass({
       );
   return (
     <div className={styles.allWrap}>
-      <div className={styles.navWrap}><Home/></div>
+      <div className={styles.navWrap}>
+        <Home/>
+      </div>
       <div className={styles.headerwrap}>
          <div className={styles.helpwrap}>
            <div><i className="iconfont icon-setting"></i>

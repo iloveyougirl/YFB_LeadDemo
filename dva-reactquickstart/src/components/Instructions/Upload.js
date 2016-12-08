@@ -1,9 +1,14 @@
 import React from 'react';
+import { Table } from 'antd';
+
+
+
+
 const Upload= React.createClass({
     render() {
         return (
-            <div>12222222 </div>
-    );
+            <Table columns={columns} dataSource={data} bordered />
+        );
     },
 });
 

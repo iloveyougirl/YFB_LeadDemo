@@ -9,3 +9,11 @@
     padding:20px 0 20px 25px;
 
 }
+.editbtn{
+    position:absolute;
+    right:0;
+    background:#23c0fa;
+    border:none;
+    height: 24px;
+    width: 55px;
+}

@@ -11,11 +11,11 @@ import AddnavInstra from './components/Instructions/AddnavInstra';
 export default function({ history }) {
   return (
       <Router history={history}>
-        <Route path="/" component={Example}>
-          <Route path="Instruction" component={Instruction}/>
+        <Route  component={Example}>
+          <Route path="/" component={Instruction}/>
           <Route path="Userstatistics" component={Userstatistics}/>
           <Route path="Addnav" component={Addnav}/>
-          <Route path="AddnavInstra" component={AddnavInstra}/>
+          <Route path="AddnavInstra/:name" component={AddnavInstra}/>
           <Route path="Uploadimg" component={Uploadimg}/>
           <Route path="Upload" component={Upload }/>
         </Route>

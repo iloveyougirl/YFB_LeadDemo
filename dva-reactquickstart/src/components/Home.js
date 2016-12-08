@@ -44,7 +44,7 @@ const NavSider = React.createClass({
                           style={{ width: 240 }} onOpenChange={this.onOpenChange} onClick={this.handleClick} >
                        <SubMenu key="sub1" title={<span><i className="iconfont icon-daohang"
                           style={{fontSize:10,marginRight:10}}></i><span> 导航仪 </span></span>}>
-                          <Menu.Item key="1"><Link to='/Instruction'>导航仪管理</Link></Menu.Item>
+                          <Menu.Item key="1"><Link to='/'>导航仪管理</Link></Menu.Item>
                           <Menu.Item key="2"><Link to='/Userstatistics'>用户统计</Link></Menu.Item>
                           <Menu.Item key="3"><Link to='/Uploadimg'>页面设置</Link></Menu.Item>
                        </SubMenu>

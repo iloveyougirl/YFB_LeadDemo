@@ -1,0 +1,22 @@
+.editbtn{
+    position:absolute;
+    right:0;
+    background:#23c0fa;
+    border:none;
+    height: 24px;
+    width: 55px;
+}
+.bg1{
+    background:#F2F2F2;
+}
+.bg2{
+    background:#FFFFFF;
+}
+.border1{
+    outline: none;
+}
+.border2{
+    border:1px solid #FF8800;
+    overflow:hidden;
+    outline: none;
+}
