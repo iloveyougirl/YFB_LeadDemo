@@ -10,6 +10,8 @@ const Name = React.createClass({
             disabled:true,
             showbg:true,
             showborder:true,
+            name:this.props.namevalue,
+            time:this.props.time,
         };
     },
     showEdit(){
@@ -44,7 +46,7 @@ const Name = React.createClass({
         this.setState({
             showborder:true,
         });
-        const inpname=ReactDOM.findDOMNode(this.refs.nameInput).value
+        const inpname=ReactDOM.findDOMNode(this.refs.nameInput).value;
         this.props.childSendValue(inpname,this.props.id);
         reqwest({
             url: 'http://qzzg.w2.youfen8.com/api/pdf/'+this.props.id,
@@ -57,6 +59,14 @@ const Name = React.createClass({
         });
         console.log(inpname,this.props.id)
     },
+    componentWillReceiveProps:function(nextProps) {
+        this.setState({
+            name:nextProps.namevalue,
+            time:nextProps.time,
+        });
+        //console.log(nextProps.namevalue,nextProps.time);
+
+    },
     render(){
         return (
             <div onClick={this.showborder} className={this.state.showborder? styles.border1:styles.border2} onBlur={this.hiddenborder} tabIndex={-1}
@@ -64,12 +74,12 @@ const Name = React.createClass({
                  onMouseEnter={this.showEdit} onMouseLeave={this.showEdit}>
               {this.state.showEdit?<Button type="primary" className={styles.editbtn} style={{background:"#23c0fa"}} onClick={this.editInput}>编辑</Button>:null}
               <div style={{paddingTop:8}}>说明书名称:</div>
-              <div><input  defaultValue={this.props.name}  className={this.state.showbg? styles.bg1 : styles.bg2}
+              <div><input defaultValue={this.state.name}  className={this.state.showbg? styles.bg1 : styles.bg2}
                      style={{border:"none",textAlign:'center',fontSize:20,color:"#666",overflow:"hidden",width:"100%"}}
                      disabled={this.state.disabled}  onBlur={this.blurinp}  ref="nameInput"/>
               </div>
               <div style={{paddingTop:5}}>创建时间:</div>
-              <div><Input value={this.props.time} style={{border:"none",textAlign:'center',fontSize:14,color:"#666"}}
+              <div><Input value={this.state.time} style={{border:"none",textAlign:'center',fontSize:14,color:"#666"}}
                   disabled /></div>
             </div>
        )

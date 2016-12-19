@@ -15,6 +15,16 @@ const Option = Select.Option;
 
 let store = {};
 const Listmanagement = Form.create()(React.createClass({
+    /*添加系列*/
+    addlistname(){
+        this.props.form.setFieldsValue({
+            "name":'',
+        });
+        this.setState({
+            visible:true,
+            showadd:true,
+        });
+    },
     /*增删改查中的编辑*/
     edit(id,record,index){
         console.log(id,record,index)
@@ -24,7 +34,11 @@ const Listmanagement = Form.create()(React.createClass({
             editid:id.id,
         });
         this.setState({
+            showadd:false,
             visible:true,
+        });
+        this.props.form.setFieldsValue({
+            "name":id.name,
         });
     },
     /*增删改查中的删除*/
@@ -62,30 +76,69 @@ const Listmanagement = Form.create()(React.createClass({
                 console.log(values)
             if (!err) {
             console.log('Received values of form:', values);
-            reqwest({
-                url: 'http://qzzg.w2.youfen8.com/api/allseries/'+this.state.editid,
-                data:{
-                   name:values.name,
-                },
-                method: 'put',
-                type: 'json',
-            }).then((data) => {
-                if( data.code == 200){
-                    let tableData = this.state.data;
-                    const index = this.state.index;
-                    tableData[index].name=values.name
-                    this.setState({
-                        data:tableData,
-                        visible:false,
+                if(this.state.showadd){
+                    reqwest({
+                        url: 'http://qzzg.w2.youfen8.com/api/allseries/'+'?name='+values.name,
+                        method: 'POST',
+                        type: 'json',
+                    }).then((data) => {
+                        if( data.code == 200){
+                            notification.open({
+                                    message:'温馨提示：',
+                                    description: '该项已保存成功',
+                                    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                            });
+                            reqwest({
+                                    url: 'http://qzzg.w2.youfen8.com/api/allseries',
+                                    method: 'get',
+                                    type: 'json',
+                            }).then((data) => {
+                                this.setState({
+                                    loading: false,
+                                    data:data.data,
+                                    copydata:data.data,
+                                    count:data.count,
+                                    visible: false,
+                                });
+                             })
+                            }
+                            else{
+                                message.error(data.errmsg);
+                                return false;
+                            }
                     });
-                   message.success(data.msg || '修改成功');
                 }
                 else{
-                  message.error(data.errmsg);
-                  return false;
+                    reqwest({
+                        url: 'http://qzzg.w2.youfen8.com/api/allseries/'+this.state.editid,
+                        data:{
+                            name:values.name,
+                        },
+                        method: 'put',
+                        type: 'json',
+                    }).then((data) => {
+                        if( data.code == 200){
+                            let tableData = this.state.data;
+                            const index = this.state.index;
+                            tableData[index].name=values.name
+                            this.setState({
+                                data:tableData,
+                                visible:false,
+                            });
+                            notification.open({
+                                    message:'温馨提示：',
+                                    description: '该项已修改成功',
+                                    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                            });
+                            //setTimeout( () => {
+                            //},10);
+                        }
+                        else{
+                            message.error(data.errmsg);
+                            return false;
+                        }
+                    });
                 }
-           });
-
             }
         });
 
@@ -145,6 +198,7 @@ const Listmanagement = Form.create()(React.createClass({
             sel:'',
             copydata:[],
             needPage:'',
+            showadd:true,
         };
     },
     handleTableChange(pagination, filters, sorter) {
@@ -224,7 +278,7 @@ const Listmanagement = Form.create()(React.createClass({
                     <a href="javascript:;" onClick={function(){self.edit(text,record,index)}}>编辑</a>
                     <span className="ant-divider" />
                     <Popconfirm title="是否删除?" onConfirm={function(){self.del(text,record,index)}} okText="Yes" cancelText="No">
-                        <a href="#">删除</a>
+                        <a href="#" >删除</a>
                     </Popconfirm>
                   </span>
                 );
@@ -235,8 +289,8 @@ const Listmanagement = Form.create()(React.createClass({
             <div>
                   <Row>
                     <Col span={14}>
-                      <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }}>
-                        <Link to='Addnav'>添加</Link>
+                      <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }} onClick={this.addlistname}>
+                        添加
                       </Button>
                     </Col>
                       <Col span={6}>
@@ -268,10 +322,10 @@ const Listmanagement = Form.create()(React.createClass({
                       onChange={this.handleTableChange}/>
                   </div>
                 <Form onSubmit={this.handleOk}>
-                  <Modal title="编辑" style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
+                  <Modal title={this.state.showadd?"新建":"编辑"} style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
                    <FormItem label="系列" {...formItemLayout}>
-                        {getFieldDecorator('name', {initialValue: this.state.list,rules: [{ required: true, message: '必填' }],})
-                        (<Input style={{width:300}}/>)}
+                        {getFieldDecorator('name', {initialValue:this.state.list,rules: [{ required: true, message: '必填' }],})
+                        (<Input style={{width:300}} />)}
                     </FormItem>
                   </Modal>
                 </Form>

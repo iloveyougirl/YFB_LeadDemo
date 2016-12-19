@@ -1,47 +1,43 @@
 import React from 'react';
 import reqwest from 'reqwest';
+import { Upload, message, Input,Form,Modal,Button,Row,Col,Collapse,Select,notification, Icon } from 'antd';
+import FreeScrollBar from 'react-free-scrollbar';
 import Name from './changename/changename';
 import styles from './AddnavInstra.css';
-import { Upload, message, Input } from 'antd';
-import { Form } from 'antd';
-import { Modal,Button } from 'antd';
-import { Row, Col } from 'antd';
-import { Collapse } from 'antd';
-import { Select } from 'antd';
-import { notification, Icon } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 const Panel = Collapse.Panel;
-const props = {
-    name: 'file',
-    action: 'http://qzzg.w2.youfen8.com/api/pdf',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    data:{
-        file: 'file',
-        name:'file.name',
-    },
-    data(e){
-        console.log(e);
-    },
-    onChange(info) {
-        console.log(info)
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
-function callback(key) {
-    console.log(key);
-};
-function handleChange(value) {
-    console.log(`selected ${value}`);
-};
+//const props = {
+//    name: 'file',
+//    action: 'http://qzzg.w2.youfen8.com/api/pdf',
+//    headers: {
+//        authorization: 'authorization-text',
+//    },
+//    onChange(info) {
+//         console.log(info)
+//        if (info.file.status !== 'uploading') {
+//            console.log(info.file, info.fileList);
+//        }
+//        if (info.file.status === 'done') {
+//            if(info.file.response.code==200){
+//                let tableData = this.state.data;
+//                tableData.unshift(parseInt(index),1);
+//                this.setState({
+//                    data:tableData,
+//                });
+//                this.setState({
+//
+//                });
+//            }
+//            message.success(`${info.file.name} 文件上传成功`);
+//        } else if (info.file.status === 'error') {
+//            message.error(`${info.file.name} 文件上传失败`);
+//        }
+//    },
+//};
+
 const AddnavInstra = Form.create()(React.createClass({
     handleSubmit(e) {
         e.preventDefault();
@@ -57,7 +53,7 @@ const AddnavInstra = Form.create()(React.createClass({
             });
             this.props.form.validateFields((err, values) => {
                 if (!err) {
-                    console.log('Received values of form: ', values);
+                    // console.log('Received values of form: ', values);
                    if(this.props.params.name=="add"){
                        if(this.state.pid==''){
                            return false;
@@ -141,7 +137,7 @@ const AddnavInstra = Form.create()(React.createClass({
                                        },
                                        type: 'json',
                                    }).then((data) => {
-                                       console.log(data)
+                                       // console.log(data)
                                        if( data.code == 200){
                                            message.success(data.msg || '保存成功');
                                        }
@@ -162,7 +158,7 @@ const AddnavInstra = Form.create()(React.createClass({
                                        },
                                        type: 'json',
                                    }).then((data) => {
-                                       console.log(data)
+                                       // console.log(data)
                                        if( data.code == 200){
                                            message.success(data.msg || '保存成功');
                                        }
@@ -191,6 +187,7 @@ const AddnavInstra = Form.create()(React.createClass({
             copydata:[],
             pid:'',
             pdfid:'',
+            checkValue: sessionStorage.getItem("id") || false,
         };
     },
     /*点击显示模态框*/
@@ -200,28 +197,37 @@ const AddnavInstra = Form.create()(React.createClass({
             method: 'GET',
             type: 'json',
         }).then((data) => {
-            console.log(data)
+            // console.log(data)
             this.setState({
-                data:data.data,
+                data:data,
             });
-           console.log(data.data)
+           // console.log(data.data)
         });
-
-
         this.setState({
             visible: true,
         });
 
+
     },
     handleOk() {
-        console.log('Clicked OK');
+        // console.log('Clicked OK');
         if(this.state.pdfValue!==''){
             this.setState({
                 visible: false,
             });
         }
         else{
-            message.info('请选择文件');
+            // message.info('请选择文件');
+            // const pdfData = this.state.data;
+            // pdfData.unshift({
+            //     id:88,
+            //     name: 'nihao',
+            //     created_at:"2016-12-18 20:11:38",
+            //     pdf_url:"http://1.s.pros.weiniudiandian.com/qzzg/pdf/bnlkYlipVCGezGNf.pdf",
+            // });
+            // this.setState({
+            //     data:pdfData,
+            // });
         }
     },
     handleCancel(e) {
@@ -231,14 +237,16 @@ const AddnavInstra = Form.create()(React.createClass({
     },
     /*从子组件中得到的数据*/
     getValue(e,id){
-        console.log(e,id)
+        // console.log(e,id)
         this.setState({
             pdfValue:e,
             pid:id,
         });
     },
+    handleChange(value) {
+      // console.log(`selected ${value}`);
+    },
     componentDidMount() {
-        console.log(this.props.params.name)
         if(this.props.params.name=="add"){
             reqwest({
                 url: 'http://qzzg.w2.youfen8.com/api/allseries/',
@@ -251,22 +259,12 @@ const AddnavInstra = Form.create()(React.createClass({
             });
         }
         else if(this.props.params.name=="edit"){
-         console.log(sessionStorage.getItem("id"))
-            //sessionStorage.getItem("id")
-            //sessionStorage.getItem("name")
-            //sessionStorage.getItem("modelname")
-            //sessionStorage.getItem("pdfname")
-            //this.setState({
-            //    pdfValue:sessionStorage.getItem("pdfname"),
-            //    modelValue:sessionStorage.getItem("modelname"),
-            //    listName:sessionStorage.getItem("name"),
-            //});
             reqwest({
                 url: 'http://qzzg.w2.youfen8.com/api/product/'+sessionStorage.getItem("id")+'/edit',
                 method: 'get',
                 type: 'json',
             }).then((data) => {
-                console.log(data)
+                // console.log(data)
                 this.setState({
                     pdfValue:data[0].pdf.name,
                     modelValue:data[0].name,
@@ -274,6 +272,7 @@ const AddnavInstra = Form.create()(React.createClass({
                     pdfid:data[0].pdf.id,
                     sssid:data[0].series.id,
                 });
+                this.props.form.setFieldsValue({sid:`${data[0].series.id}`});
             });
             reqwest({
                 url: 'http://qzzg.w2.youfen8.com/api/allseries/',
@@ -281,34 +280,89 @@ const AddnavInstra = Form.create()(React.createClass({
                 type: 'json',
             }).then((data) => {
                 this.setState({
-                copydata:data.data,
+                  copydata:data.data,
+                });
             });
-            });
-        }
 
+        }
     },
     render() {
-        const self = this
+        const self = this;
         const { getFieldDecorator } = this.props.form;
+        const props = {
+            name: 'file',
+            action: 'api/pdf',
+            headers: {
+                authorization: 'authorization-text',
+            },
+            onChange(info) {
+                    if (info.file.status !== 'uploading') {
+                        console.log(info.file,info.fileList);
+                    }
+                    if (info.file.status === 'done') {
+                        if (info.file.response.errcode == 401) {
+                            message.error(`${info.file.name} 文件上传失败`);
+                        }
+                        else{
+                            const pdfData = self.state.data;
+                            pdfData.unshift({
+                                id:info.file.response.id,
+                                name: info.file.response.name,
+                                created_at:info.file.response.created_at,
+                                pdf_url:info.file.response.pdf_url,
+                            });
+                            self.setState({
+                                data:pdfData,
+                            });
+                             setTimeout( () => {
+                                 window.location.reload();
+                            //     //setTimeout('myrefresh()',1000); //指定1秒刷新一次
+                             },1500);
+                            message.success(`${info.file.name} 文件上传成功`);
+                        }
+                    }
+                    else if (info.file.status === 'error') {
+                        message.error(`${info.file.name} 文件上传失败`);
+                    }
+            },
+        };
         return (
             <div className={styles.addnavwrap}>
-                <Collapse defaultActiveKey={['1']} onChange={callback}>
+                <Collapse defaultActiveKey={['1']}>
                     <Panel header="新建导航仪系列" key="1">
                         <Row>
                           <Form inline>
                             <Col span={24} style={{marginLeft:'25%'}}>
                                 <FormItem label="选择系列">
-                                    {getFieldDecorator('sid', {initialValue:this.state.listName,rules:[{ required: true,message:'请选择系列'},],})
-                                    (<Select showSearch style={{ width:300}} placeholder="请选择系列"
-                                       optionFilterProp="children" onChange={handleChange} notFoundContent="">
+                                    {getFieldDecorator('sid', {
+                                      rules:[
+                                          {
+                                            required: true,
+                                            message:'请选择系列'
+                                          },
+                                        ],
+                                      })(
+                                      <Select 
+                                        showSearch
+                                        style={{ width:300}}
+                                        placeholder="请选择系列"
+                                        optionFilterProp="children" 
+                                        onChange={this.handleChange} 
+                                        notFoundContent=""
+                                      >
                                         {
                                           this.state.copydata.map(
                                             function(e,index){
-                                              return <Option key={"indexss"+index} value={`${e.id}`}>{e.name}</Option>
+                                              return <Option 
+                                                      key={"indexss"+index}
+                                                      value={`${e.id}`}
+                                                     >{e.name}</Option>
                                             }
                                           )
                                         }
-                                     </Select>)}
+                                      </Select>
+                                      )
+                                    }
                                 </FormItem>
                             </Col>
                             <Col span={24} className={styles.listcolorwrap} style={{marginLeft:'25%'}}>
@@ -337,23 +391,27 @@ const AddnavInstra = Form.create()(React.createClass({
                   footer={[<Button key="back" type="ghost" size="large" onClick={this.handleCancel}>取消</Button>,
                   <Button key="submit" type="primary" size="large" onClick={this.handleOk}>确定</Button>,]}>
                     <Row>
-                      <Col span={18}></Col>
-                      <Col span={6}>
-                        <Upload {...props}>
-                          <Button type="primary" style={{background:'#00cc00', border:'none',marginLeft:5,width:120,height:30}}>本地上传</Button>
-                        </Upload>
-                      </Col>
-                        {
-                         this.state.data.map(
-                            function(e,index){
-                                return (
-                                      <Col span={4} style={{marginLeft:24,marginTop:20}} key={'index'+index}>
-                                        <Name name={e.name} id={e.id} time={e.created_at} childSendValue={self.getValue}></Name>
-                                      </Col>
-                                )
-                            }
-                         )
-                        }
+                      <div style={{height:'450px'}}>
+                        <FreeScrollBar>
+                            <Col span={18}/>
+                            <Col span={6}>
+                              <Upload {...props}>
+                                <Button type="primary" style={{background:'#00cc00', border:'none',marginLeft:5,width:120,height:30}}>本地上传</Button>
+                              </Upload>
+                            </Col>
+                              {
+                               self.state.data.map(
+                                  function(e,index){
+                                      return (
+                                            <Col span={4} style={{marginLeft:24,marginTop:20}} key={'index'+index}>
+                                              <Name namevalue={e.name} id={e.id} time={e.created_at} childSendValue={self.getValue}/>
+                                            </Col>
+                                      )
+                                  }
+                               )
+                              }
+                         </FreeScrollBar>
+                       </div>
                     </Row>
 
                 </Modal>

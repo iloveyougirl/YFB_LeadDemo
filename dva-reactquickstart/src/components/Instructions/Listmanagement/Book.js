@@ -20,7 +20,7 @@ const Book = Form.create()(React.createClass({
     del(id,record,index){
         console.log(id,record,index)
         reqwest({
-            url: 'http://qzzg.w2.youfen8.com/api/product/'+id.id,
+            url: 'http://qzzg.w2.youfen8.com/api/product/'+id,
             method: 'delete',
             type: 'json',
         }).then((data) => {
@@ -263,7 +263,7 @@ const Book = Form.create()(React.createClass({
             render: (id,record,index) => {
               return (
                 <span>
-                  <span href="javascript:;" onClick={function(){self.edit(record)}}> <Link to='AddnavInstra/edit'>编辑</Link></span>
+                  <span href="javascript:;" onClick={function(){self.edit(record)}}> <Link to='/AddnavInstra/edit'>编辑</Link></span>
                   <span className="ant-divider" />
                   <Popconfirm title="是否删除?" onConfirm={function(){self.del(id,record,index)}} okText="Yes" cancelText="No">
                     <a href="#">删除</a>
@@ -278,7 +278,7 @@ const Book = Form.create()(React.createClass({
                   <Form inline>
                     <Col span={3}>
                         <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }}>
-                          <Link to='AddnavInstra/add'>新建</Link>
+                          <Link to='/AddnavInstra/add'>新建</Link>
                         </Button>
                     </Col>
                     <Col span={4}>
