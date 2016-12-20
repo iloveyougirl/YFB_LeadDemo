@@ -1,0 +1,89 @@
+/*四幅图片包裹*/
+.someicon{
+    height:100%;
+    border-bottom: 1px solid #EEEEEE;
+    background-color: white;
+}
+/*四幅图片布局样式*/
+.someiconstyle{
+    text-align:center;
+}
+/*四幅图片以及相应文字*/
+.flex-demo {
+    text-align:center;
+    margin-bottom: 8px;
+    -webkit-background-clip: padding-box;
+}
+.icon-toutiao{
+    font-size: 30px;
+    line-height:31px;
+    color: darkorange;
+}
+/*css3 文字向上滚动*/
+.containerbox{
+    background:white;
+    padding:10px;
+}
+.containerbox .li-box{
+    height:28px;
+    overflow:hidden;
+}
+.containerbox ul{
+    position:relative;
+    animation: moveUp 8s infinite cubic-bezier(1,0,0.5,0);
+    -webkit-animation: moveUp 8s infinite  cubic-bezier(1,0,0.5,0);
+}
+@keyframes moveUp
+{
+    0%{
+        transform: translateY(0px);
+    }
+    20%{
+        transform: translateY(-28px);
+    }
+    40%{
+        transform: translateY(-56px);
+    }
+    60%{
+        transform: translateY(-84px);
+    }
+    80%{
+        transform: translateY(-112px);
+    }
+    100%{
+        transform: translateY(-140px);
+    }
+}
+
+@-webkit-keyframes moveUp /*Safari and Chrome*/
+{
+    0%{
+        -webkit-transform: translateY(0px);
+    }
+    20%{
+        -webkit-transform: translateY(-28px);
+    }
+    40%{
+        -webkit-transform: translateY(-56px);
+    }
+    60%{
+        -webkit-transform: translateY(-84px);
+    }
+    80%{
+        -webkit-transform: translateY(-112px);
+    }
+    100%{
+        -webkit-transform: translateY(-140px);
+    }
+}
+.containerbox ul:hover{
+    animation-play-state:paused;
+    -webkit-animation-play-state:paused;
+}
+.containerbox li{
+    list-style:none;
+    line-height:1.8;
+    color:#666;
+    border-left: 1px solid #EEEEEE;
+    text-indent: 8%;
+}

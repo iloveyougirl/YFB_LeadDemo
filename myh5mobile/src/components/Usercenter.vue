@@ -6,25 +6,26 @@
         </x-header>
     </div>
 
-    <div class='userbg'></div>
+    <div class='userbg'>
+    </div>
 
     <div>
         <group>
-           <cell title="兑换中心" is-link v-link="{path: '/Exchangecenter'}">
-             <img slot="icon" width="20" style="display:block;margin-right:5px" src='../assets/ball.png'>
+           <cell title='兑换中心' is-link v-link="{path: '/Exchangecenter'}">
+               <i slot="icon" class="iconfont icon-form" style='font-size:20px;color:cornflowerblue;margin-right:5px'></i>
            </cell>
            <cell title="兑换记录" is-link>
-             <img slot="icon" width="20" style="display:block;margin-right:5px" src='../assets/ball.png'>
+               <i slot="icon" class="iconfont icon-wodedingdan" style='font-size:20px;color:cadetblue;margin-right:5px'></i>
            </cell>
            <cell title="收货地址" is-link v-link="{path: '/Shippingaddress'}">
-             <img slot="icon" width="20" style="display:block;margin-right:5px" src='../assets/ball.png'>
+               <i slot="icon" class="iconfont icon-zengjia" style='font-size:20px;color:cornflowerblue;margin-right:5px'></i>
            </cell>
         </group>
     </div>
     <div style="">
       <group>
         <cell title="设置" is-link v-link="{path: '/Settings'}">
-           <img slot="icon" width="20" style="display:block;margin-right:5px" src='../assets/ball.png'>
+            <i slot="icon" class="iconfont icon-shezhi" style='font-size:20px;color:cornflowerblue;margin-right:5px'></i>
         </cell>
       </group>
     </div>
@@ -46,10 +47,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .userbg{
-  background:#333333;
-  height:110px;
+  background:white;
+  height:90px;
   width:100%;
   margin:16px 0px;
 }
