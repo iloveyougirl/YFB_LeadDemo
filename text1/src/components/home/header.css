@@ -1,0 +1,78 @@
+
+/*头像*/
+.Avatar{
+    position: absolute;
+    top: 1.2rem;
+    left: 50%;
+    margin-left: -27px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #FF5500;
+}
+.Avatar img{
+    width:100%;
+    height: 100%;
+}
+
+
+/*上背景*/
+.topbg{
+    height:220px;
+    width:100%;
+    background:#FCB643;
+}
+.scores{
+    position: absolute;
+    left: 33px;
+    top: 68px;
+    font-weight: bold;
+    font-size: 0.96rem;
+}
+.Inputstyle{
+    position: absolute;
+    left: 50%;
+    margin-left: -70px;
+    /* margin-right: 55px; */
+    top: 115px;
+    width: 140px;
+    height: 35px;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 35px;
+    color: #FF8800;
+    font-weight: bold;
+    font-size: 17px;
+    box-shadow: -2px 4px 3px #FF8800;
+}
+.uptop{
+    position:relative;
+    top: 8.5rem;
+    animation: moveUp 0.3s ;
+    -webkit-animation: moveUp 0.3s ;
+    -moz-animation: moveUp 0.3s ; /* Firefox */
+    -o-animation: moveUp 0.3s ;
+}
+@keyframes moveUp
+{
+   from {top:10rem;}
+   to {top:8.5rem;}
+}
+
+@-webkit-keyframes moveUp  
+{
+   from {top:10rem;}
+   to {top:8.5rem;}
+}
+@-moz-keyframes moveUp   
+{
+   from {top:10rem;}
+   to {top:8.5rem;}
+}
+@-o-keyframes moveUp   
+{
+   from {top:10rem;}
+   to {top:8.5rem;}
+}
