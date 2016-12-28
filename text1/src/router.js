@@ -5,6 +5,8 @@ import Usercenter from "./components/home/usercenter/header"
 import Changecenter from "./components/home/changecenter/changecenter"
 import Settings from "./components/home/usercenter/settings/index"
 import Recharge from "./components/home/recharge/recharge"
+import Rank from "./components/home/rank/rank"
+import Address from "./components/home/usercenter/address/address"
 
 export default function({ history }) {
   return (
@@ -14,6 +16,8 @@ export default function({ history }) {
       <Route path="Changecenter" component={Changecenter}/>
       <Route path="Settings" component={Settings}/>
       <Route path="Recharge" component={Recharge}/>
+      <Route path="Rank" component={Rank}/>
+      <Route path="Address" component={Address}/>
     </Router>
   );
 };

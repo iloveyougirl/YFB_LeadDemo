@@ -21,7 +21,7 @@ class Options extends Component {
 			            </FlexItem>
 		           		         
 		            <FlexItem>
-			            <Link to="/Changecenter" style={{color:"black"}}>
+			            <Link to="/Rank" style={{color:"black"}}>
 			                <div className={styles.someiconstyle}>
 	                            <div className="iconfont icon-duihuanzhongxin" style={{fontSize:35,color:"#37A3EE"}}></div>
 	                        </div>

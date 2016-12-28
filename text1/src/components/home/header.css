@@ -48,7 +48,8 @@
     box-shadow: -2px 4px 3px #FF8800;
 }
 .uptop{
-    position:relative;
+    position:absolute;
+    width: 100%;
     top: 8.5rem;
     animation: moveUp 0.3s ;
     -webkit-animation: moveUp 0.3s ;
@@ -57,22 +58,28 @@
 }
 @keyframes moveUp
 {
-   from {top:10rem;}
+   from {top:7rem;}
    to {top:8.5rem;}
 }
 
 @-webkit-keyframes moveUp  
 {
-   from {top:10rem;}
+   from {top:7rem;}
    to {top:8.5rem;}
 }
 @-moz-keyframes moveUp   
 {
-   from {top:10rem;}
+   from {top:7rem;}
    to {top:8.5rem;}
 }
 @-o-keyframes moveUp   
 {
-   from {top:10rem;}
+   from {top:7rem;}
    to {top:8.5rem;}
+}
+.d{
+    color: white;
+}
+.e{
+    color: #FF6600;
 }

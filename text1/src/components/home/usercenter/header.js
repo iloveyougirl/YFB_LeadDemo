@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import reqwest from 'reqwest';
 import { Link } from 'dva/router';
 import styles from "./header.css"
 import { Cells,CellsTitle,Cell,CellHeader, CellBody,CellFooter,} from 'react-weui';
@@ -9,6 +10,15 @@ import { Cells,CellsTitle,Cell,CellHeader, CellBody,CellFooter,} from 'react-weu
 
 
 export default class usercenter extends Component {
+    componentDidMount() {
+        reqwest({
+            url: 'https://demo.integral.w2.youfen8.com/api/to?url=https://demo.integral.w2.youfen8.com',
+            method: 'GET',
+            type: 'json',
+        }).then((data) => {
+            console.log(data)
+        });
+    }
     render() {
         return (
             <div>
@@ -32,14 +42,16 @@ export default class usercenter extends Component {
 
                 <div>
                     <Cells>
-                        <Cell href="javascript:;" access>
-                            <CellBody>
-                                兑换中心
-                            </CellBody>
-                            <CellFooter>
-                                又有好礼占坑了
-                            </CellFooter>
-                        </Cell>
+                        <Link to="/Changecenter" style={{color:"black"}}>
+                            <Cell  access>
+                                <CellBody>
+                                    兑换中心
+                                </CellBody>
+                                <CellFooter>
+                                    又有好礼占坑了
+                                </CellFooter>
+                            </Cell>
+                        </Link>
                         <Cell access>
                             <CellBody>
                                 兑换记录
@@ -50,17 +62,19 @@ export default class usercenter extends Component {
                     </Cells>
 
                     <Cells>
-                        <Cell href="javascript:;" access>
-                            <CellHeader>
-                                <div className="iconfont icon-shouhuodizhi" style={{fontSize:1.3+"rem",marginTop:3,marginRight:5}}></div>
-                            </CellHeader>
-                            <CellBody>
-                                收货地址
-                            </CellBody>
-                            <CellFooter>                             
-                            </CellFooter>
-                        </Cell>
-                        <Link to="Settings">
+                        <Link to="/Address">
+                            <Cell access style={{borderTop:"1px solid #ECECEC", color:"black"}}>
+                                <CellHeader>
+                                    <div className="iconfont icon-shouhuodizhi" style={{fontSize:1.3+"rem",marginTop:3,marginRight:5}}></div>
+                                </CellHeader>
+                                <CellBody>
+                                    收货地址
+                                </CellBody>
+                                <CellFooter>                             
+                                </CellFooter>
+                            </Cell>
+                        </Link>
+                        <Link to="/Settings">
                             <Cell access style={{borderTop:"1px solid #ECECEC", color:"black"}}>
                                 <CellHeader>
                                    <div className="iconfont icon-shezhi" style={{fontSize:1.3+"rem",marginTop:3,marginRight:5}}></div>

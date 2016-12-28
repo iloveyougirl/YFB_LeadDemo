@@ -30,8 +30,8 @@
 }
 .containerbox ul{
     position:relative;
-    animation: moveUp 8s infinite cubic-bezier(1,0,0.5,0);
-    -webkit-animation: moveUp 8s infinite  cubic-bezier(1,0,0.5,0);
+    animation: moveUp 16s infinite cubic-bezier(1,0,0.5,0);
+    -webkit-animation: moveUp 16s infinite  cubic-bezier(1,0,0.5,0);
 }
 @keyframes moveUp
 {

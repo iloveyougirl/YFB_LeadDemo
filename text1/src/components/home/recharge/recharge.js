@@ -10,7 +10,7 @@ export default class AddTodo extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-           e:"",
+           val:"",
         };
     }    
     componentDidMount() {
@@ -19,12 +19,16 @@ export default class AddTodo extends Component {
 	handleClick(){
         window.history.back(-1);
     }
+    // handleChange = (e) => {
+    //     this.setState({val:e.target.value});
+    //     console.log(this.state.val)
+    // }
     handleChange(e){
     	this.setState({
-    		e:e.target.value
+    		val:e.target.value
     	})
-    	const inpname=ReactDOM.findDOMNode(this.refs.numInput).value;
-    	console.log(this.state.e,inpname)
+        const num= ReactDOM.findDOMNode(this.refs.numInput).value
+        console.log(this.state.val,num)
     }
     render() {
         return (
@@ -34,7 +38,7 @@ export default class AddTodo extends Component {
                     <div style={{textAlign:"center",lineHeight:3.19+"rem",fontSize:18}}>充值</div>
                 </div>
                 <div className={styles.topwrap}>
-               		<input type="text"  placeholder="请输入正确手机号" ref="numInput" onChange={this.handleChange.bind(this)} value={this.state.e} className={styles.inputcontent}/>
+               		<input type="text"  placeholder="请输入正确手机号" ref="numInput" onChange={this.handleChange.bind(this)} value={this.state.val} className={styles.inputcontent}/>
                		<div className={styles.a}>浙江移动</div>
                 </div> 
                 <div className={styles.b}>全国流量包  立即生效  月底失效</div>  

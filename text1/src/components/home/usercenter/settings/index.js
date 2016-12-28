@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
 import styles from './index.css'
+import ReactDOM from 'react-dom';
 import {Button, ButtonArea} from 'react-weui';
 
 
 export default class AddTodo extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+           e:"",
+        };
+    }    
     handleClick(){
         window.history.back(-1);
+    }
+    handleChange(e){
+        this.setState({
+            e:e.target.value
+        })
+        const inpname=ReactDOM.findDOMNode(this.refs.numInput).value;
+        console.log(this.state.e,inpname)
     }
     render() {
         return (
@@ -25,7 +39,7 @@ export default class AddTodo extends Component {
                         <div style={{borderTop:"1px solid #EEEEEE",overflow:"hidden",height:46}}>
                             <div style={{float:"left",lineHeight:"46px"}}>昵称</div>
                             <div style={{float:"right"}}>
-                                <input type="text"  defaultValue="面对疾风吧" className={styles.inputcontent}/>
+                                <input type="text"  defaultValue="面对疾风吧" ref="numInput" onChange={this.handleChange.bind(this)} className={styles.inputcontent}/>
                             </div>
                         </div>
                         <div style={{borderTop:"1px solid #EEEEEE",overflow:"hidden",height:46}}>
@@ -38,7 +52,7 @@ export default class AddTodo extends Component {
                 </div>
                 <div>
                     <ButtonArea>
-                        <Button type="default" style={{color:"#4ab0f7",border:"1px solid #4ab0f7"}}>保存修改</Button>                      
+                        <Button>保存</Button>                      
                     </ButtonArea>
                 </div>          
             </div>

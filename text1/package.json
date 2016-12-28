@@ -5,9 +5,13 @@
   },
   "dependencies": {
     "dva": "^1.1.0",
+    "rc-cascader": "^0.10.3",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-native": "^0.39.2",
     "react-weui": "^1.0.3",
+    "reqwest": "^2.0.5",
+    "rn-wheel-picker-china-region": "^1.0.3",
     "weui": "^1.1.0"
   },
   "devDependencies": {
