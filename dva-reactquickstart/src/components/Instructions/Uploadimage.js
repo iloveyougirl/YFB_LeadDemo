@@ -7,9 +7,9 @@ const Uploadimg= React.createClass({
         return (
             <div>
                 <Button type="primary" style={{background:"#00cc00", border:'none'}}
-                  className={styles.uploadimg}><Link to='/Upload'>上传图片</Link></Button>注:更新首页顶部图片
+                  	className={styles.uploadimg}><Link to='/Upload'>上传图片</Link></Button>注:更新首页顶部图片
             </div>
-       );
+       	);
     },
 });
 

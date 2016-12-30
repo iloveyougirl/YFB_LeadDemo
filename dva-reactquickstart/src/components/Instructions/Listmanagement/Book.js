@@ -25,8 +25,8 @@ const Book = Form.create()(React.createClass({
             type: 'json',
         }).then((data) => {
             if(typeof data.errmsg !== 'undefined'){
-              message.error(data.errmsg);
-              return false;
+                message.error(data.errmsg);
+                return false;
             }
             let tableData = this.state.data;
             //if(typeof this.state.needPage=='undefined'||this.state.needPage==''){
@@ -39,9 +39,9 @@ const Book = Form.create()(React.createClass({
                 data:tableData,
             });
             notification.open({
-                    message: '温馨提示：',
-                    description: '该项已删除',
-                    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                message: '温馨提示：',
+                description: '该项已删除',
+                icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
             });
         });
     },
@@ -67,7 +67,7 @@ const Book = Form.create()(React.createClass({
                 store.pdf = values.pdf;
                 this.fetch(store);
             }
-    });
+        });
     },
     /*增删改查中的编辑*/
     edit(record){
@@ -159,7 +159,6 @@ const Book = Form.create()(React.createClass({
     handleTableChange(pagination, filters, sorter) {
         const pager = this.state.pagination;
         pager.current = pagination.current;
-
         console.log(pager)
         this.setState({
             pagination: pager,
@@ -182,25 +181,25 @@ const Book = Form.create()(React.createClass({
         console.log('params:', params);
         this.setState({ loading: true });
         reqwest({
-                url: 'http://qzzg.w2.youfen8.com/api/product',
-                method: 'get',
-                data: {
-                    ...params,
-                },
-                type: 'json',
+            url: 'http://qzzg.w2.youfen8.com/api/product',
+            method: 'get',
+            data: {
+                ...params,
+            },
+            type: 'json',
         }).then((data) => {
             const pagination = this.state.pagination;
         // Read total count from server
         // pagination.total = data.totalCount;
-        pagination.total = data.total;
-        this.setState({
-            loading: false,
-            data:data.data,
-            series_count:data.series_count,
-            product_count:data.product_count,
-            pagination,
+            pagination.total = data.total;
+            this.setState({
+                loading: false,
+                data:data.data,
+                series_count:data.series_count,
+                product_count:data.product_count,
+                pagination,
+            });
         });
-    });
     },
     componentDidMount() {
         this.fetch();
@@ -209,9 +208,9 @@ const Book = Form.create()(React.createClass({
             method: 'get',
             type: 'json',
         }).then((data) => {
-        this.setState({
-            copydata:data.data,
-        });
+            this.setState({
+                copydata:data.data,
+            });
         });
     },
 
@@ -243,13 +242,13 @@ const Book = Form.create()(React.createClass({
             title: '说明书名称',
             dataIndex:'pdf.name',
             width: '15%',
-        },  {
+        }, {
             key: 6,
             title: '说明书地址',
             dataIndex:'pdf.pdf_url',
             width: '15%',
             render: (url) => <a href={url} target="_blank">查看说明书</a>,
-        },{
+        }, {
             key: 7,
             title: '创建时间',
             dataIndex:'created_at',
@@ -261,73 +260,71 @@ const Book = Form.create()(React.createClass({
             width: '18%',
             dataIndex:'id',
             render: (id,record,index) => {
-              return (
-                <span>
-                  <span href="javascript:;" onClick={function(){self.edit(record)}}> <Link to='/AddnavInstra/edit'>编辑</Link></span>
-                  <span className="ant-divider" />
-                  <Popconfirm title="是否删除?" onConfirm={function(){self.del(id,record,index)}} okText="Yes" cancelText="No">
-                    <a href="#">删除</a>
-                  </Popconfirm>
-                </span>
-             );
+                return (
+                    <span>
+                        <span href="javascript:;" onClick={function(){self.edit(record)}}> <Link to='/AddnavInstra/edit'>编辑</Link></span>
+                        <span className="ant-divider" />
+                        <Popconfirm title="是否删除?" onConfirm={function(){self.del(id,record,index)}} okText="Yes" cancelText="No">
+                            <a href="#">删除</a>
+                        </Popconfirm>
+                    </span>
+                );
             },
-         }];
+        }];
         return (
             <div>
                 <Row>
-                  <Form inline>
-                    <Col span={3}>
-                        <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }}>
-                          <Link to='/AddnavInstra/add'>新建</Link>
-                        </Button>
-                    </Col>
-                    <Col span={4}>
-                        <FormItem label="系列">
-                            {getFieldDecorator('sid')
-                            (<Select showSearch style={{ width:180}} placeholder="不限" allowClear
-                                optionFilterProp="children" onChange={this.handleChange} notFoundContent="">
-                                    {
-                                        this.state.copydata.map(
+                    <Form inline>
+                        <Col span={3}>
+                            <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }}>
+                                <Link to='/AddnavInstra/add'>新建</Link>
+                            </Button>
+                        </Col>
+                        <Col span={4}>
+                            <FormItem label="系列">
+                                {getFieldDecorator('sid')
+                                (<Select showSearch style={{ width:180}} placeholder="不限" allowClear
+                                    optionFilterProp="children" onChange={this.handleChange} notFoundContent="">
+                                        {this.state.copydata.map(
                                             function(e,index){
                                                 //const v = e.series?e.series.id.toString():;`${e.id}`渲染成字符串
                                                 return <Option key={"indexs"+index} value={`${e.id}`}>{e.name}</Option>
                                             }
-                                         )
-                                     }
-                             </Select>)}
-                        </FormItem>
-                    </Col>
-                    <Col span={5}>
-                        <FormItem label="说明书名称">
-                            {getFieldDecorator('pdf')
-                            (<Input placeholder="如:e50.pdf" style={{ width: 200 }}/>)}
-                        </FormItem>
-                    </Col>
-                    <Col span={8}>
-                        <FormItem label="创建时间">
-                            {getFieldDecorator('range-picker')
-                            (<RangePicker onChange={this.onChange}/>)}
-                        </FormItem>
-                    </Col>
-                    <Col span={2}>
-                        <Button type="primary" onClick={this.infosave}>搜索</Button>
-                    </Col>
-                    <Col span={2}>
-                        <Button type="ghost">导出数据</Button>
-                    </Col>
-                  </Form>
+                                        )}
+                                </Select>)}
+                            </FormItem>
+                        </Col>
+                        <Col span={5}>
+                            <FormItem label="说明书名称">
+                                {getFieldDecorator('pdf')
+                                (<Input placeholder="如:e50.pdf" style={{ width: 200 }}/>)}
+                            </FormItem>
+                        </Col>
+                        <Col span={8}>
+                            <FormItem label="创建时间">
+                                {getFieldDecorator('range-picker')
+                                (<RangePicker onChange={this.onChange}/>)}
+                            </FormItem>
+                        </Col>
+                        <Col span={2}>
+                            <Button type="primary" onClick={this.infosave}>搜索</Button>
+                        </Col>
+                        <Col span={2}>
+                            <Button type="ghost">导出数据</Button>
+                        </Col>
+                    </Form>
                 </Row>
                 <div className={styles.tablewrap}>
                     <div><span style={{fontSize:16,marginRight:80}}>导航仪</span>
-                         <span>系列 :{this.state.series_count}</span>
-                         <span style={{marginLeft:30}}>型号 : {this.state.product_count} </span>
+                        <span>系列 :{this.state.series_count}</span>
+                        <span style={{marginLeft:30}}>型号 : {this.state.product_count} </span>
                     </div>
                     <Table columns={columns}
                         dataSource={this.state.data} pagination={this.state.pagination} loading={this.state.loading}
                         onChange={this.handleTableChange}/>
-                 </div>
+                </div>
             </div>
-    );
+        );
     },
 }));
 

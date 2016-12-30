@@ -36,26 +36,26 @@ class Avatar extends React.Component {
             }
         }
         else{
-          message.error(`${info.file.name} 文件上传失败`);
+            message.error(`${info.file.name} 文件上传失败`);
         }
     }
     render() {
-           const imageUrl = this.state.imageUrl;
-            return (
-                <div className={styles.addnavwrap}>
-                    <Collapse defaultActiveKey={['1']}>
-                      <Panel header="更新首页图片" key="1">
+        const imageUrl = this.state.imageUrl;
+        return (
+            <div className={styles.addnavwrap}>
+                <Collapse defaultActiveKey={['1']}>
+                    <Panel header="更新首页图片" key="1">
                         <Upload className={styles.avatarUploader}  name="file" showUploadList={false}
-                          action="api/image"
-                          beforeUpload={beforeUpload} onChange={this.handleChange}>
-                          {imageUrl ?<img src={imageUrl} role="presentation" className={styles.avatar} /> :
+                            action="api/image"
+                            beforeUpload={beforeUpload} onChange={this.handleChange}>
+                            {imageUrl ?<img src={imageUrl} role="presentation" className={styles.avatar} /> :
                             <Icon type="plus" className={styles.avatarUploaderTrigger} />}
                         </Upload>
-                      </Panel>
-                    </Collapse>
-                </div>
-            );
-        }
+                    </Panel>
+                </Collapse>
+            </div>
+        );
+    }
 }
 
 export default Avatar;

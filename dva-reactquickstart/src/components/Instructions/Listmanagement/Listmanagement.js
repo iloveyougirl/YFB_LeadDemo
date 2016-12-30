@@ -51,8 +51,8 @@ const Listmanagement = Form.create()(React.createClass({
             type: 'json',
         }).then((data) => {
             if(typeof data.errmsg !== 'undefined'){
-              message.error(data.errmsg);
-              return false;
+                message.error(data.errmsg);
+                return false;
             }
             let tableData = this.state.data;
             if(typeof this.state.needPage=='undefined' ||this.state.needPage==''){
@@ -61,9 +61,9 @@ const Listmanagement = Form.create()(React.createClass({
                 });
             }
             tableData.splice(parseInt(index+10*[this.state.needPage-1]),1);
-            this.setState({
-              data:tableData,
-            });
+                this.setState({
+                    data:tableData,
+                });
             notification.open({
                 message: '温馨提示：',
                 description: '该项已删除',
@@ -72,10 +72,10 @@ const Listmanagement = Form.create()(React.createClass({
        });
     },
     handleOk(e) {
-            this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, values) => {
                 console.log(values)
             if (!err) {
-            console.log('Received values of form:', values);
+                console.log('Received values of form:', values);
                 if(this.state.showadd){
                     reqwest({
                         url: 'http://qzzg.w2.youfen8.com/api/allseries/'+'?name='+values.name,
@@ -126,9 +126,9 @@ const Listmanagement = Form.create()(React.createClass({
                                 visible:false,
                             });
                             notification.open({
-                                    message:'温馨提示：',
-                                    description: '该项已修改成功',
-                                    icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                                message:'温馨提示：',
+                                description: '该项已修改成功',
+                                icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
                             });
                             //setTimeout( () => {
                             //},10);
@@ -156,8 +156,8 @@ const Listmanagement = Form.create()(React.createClass({
     searchsave(e) {
         e.preventDefault();
         console.log(this.state.sel)
-         if (typeof this.state.sel=='undefined' || this.state.sel==''){
-             this.fetch(store);
+        if (typeof this.state.sel=='undefined' || this.state.sel==''){
+            this.fetch(store);
         }
         else{
             reqwest({
@@ -166,14 +166,14 @@ const Listmanagement = Form.create()(React.createClass({
                 type: 'json',
             }).then((data) => {
                 console.log(data)
-             const pagination = this.state.pagination;
-             pagination.total = 1;
+                const pagination = this.state.pagination;
+                pagination.total = 1;
                 this.setState({
                     data:[data],
                 });
-              });
+            });
              //this.fetch(this.state.data);
-         }
+        }
     },
     /*新建按钮*/
     callback:function(key) {
@@ -224,26 +224,26 @@ const Listmanagement = Form.create()(React.createClass({
         console.log('params:', params);
         this.setState({ loading: true });
         reqwest({
-                url: 'http://qzzg.w2.youfen8.com/api/allseries',
-                method: 'get',
-                data: {
-                    ...params,
-                },
-                type: 'json',
+            url: 'http://qzzg.w2.youfen8.com/api/allseries',
+            method: 'get',
+            data: {
+                ...params,
+            },
+            type: 'json',
         }).then((data) => {
             const pagination = this.state.pagination;
-        console.log(this.state.pagination)
+            console.log(this.state.pagination)
         // Read total count from server
         // pagination.total = data.totalCount;
-        pagination.total = data.count;
-        this.setState({
-            loading: false,
-            data:data.data,
-            copydata:data.data,
-            count:data.count,
-            pagination,
+            pagination.total = data.count;
+            this.setState({
+                loading: false,
+                data:data.data,
+                copydata:data.data,
+                count:data.count,
+                pagination,
+            });
         });
-    });
     },
     componentDidMount() {
         this.fetch();
@@ -256,7 +256,6 @@ const Listmanagement = Form.create()(React.createClass({
         const self = this;
         /*列表的列数据*/
         const columns = [{
-
             title: 'id',
             dataIndex: 'id',
             width:'10%',
@@ -274,63 +273,62 @@ const Listmanagement = Form.create()(React.createClass({
             width:'20%',
             render: (text,record,index) => {
                 return (
-                  <span>
-                    <a href="javascript:;" onClick={function(){self.edit(text,record,index)}}>编辑</a>
+                    <span>
+                        <a href="javascript:;" onClick={function(){self.edit(text,record,index)}}>编辑</a>
                     <span className="ant-divider" />
-                    <Popconfirm title="是否删除?" onConfirm={function(){self.del(text,record,index)}} okText="Yes" cancelText="No">
-                        <a href="#" >删除</a>
-                    </Popconfirm>
-                  </span>
+                        <Popconfirm title="是否删除?" onConfirm={function(){self.del(text,record,index)}} okText="Yes" cancelText="No">
+                            <a href="#" >删除</a>
+                        </Popconfirm>
+                    </span>
                 );
             },
         }];
         const {getFieldDecorator}=this.props.form;
         return (
             <div>
-                  <Row>
+                <Row>
                     <Col span={14}>
-                      <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }} onClick={this.addlistname}>
-                        添加
-                      </Button>
+                        <Button type="primary" size="large" style={{ background:'#00cc00',border:'none' }} onClick={this.addlistname}>
+                            添加
+                        </Button>
                     </Col>
-                      <Col span={6}>
-                            <Form inline>
-                                <FormItem label="系列">
-                                        <Select showSearch style={{ width:180}} placeholder="不限" allowClear
-                                            optionFilterProp="children" onChange={this.handleChange} notFoundContent="">
-                                              {
-                                                 this.state.copydata.map(
-                                                   function(e){
-                                                     return <Option key={e.id} value={`${e.id}`}>{e.name}</Option>
-                                                   }
-                                                 )
-                                              }
-                                        </Select>
-                                </FormItem>
-                                <FormItem>
-                                  <Button type="primary" onClick={this.searchsave}>搜索</Button>
-                                </FormItem>
-                            </Form>
-                      </Col>
-                  </Row>
-                  <div className={styles.tablewrap}>
+                    <Col span={6}>
+                        <Form inline>
+                            <FormItem label="系列">
+                                <Select showSearch style={{ width:180}} placeholder="不限" allowClear
+                                    optionFilterProp="children" onChange={this.handleChange} notFoundContent="">
+                                        {this.state.copydata.map(
+                                            function(e){
+                                                return <Option key={e.id} value={`${e.id}`}>{e.name}</Option>
+                                            }
+                                        )
+                                    }
+                                </Select>
+                            </FormItem>
+                            <FormItem>
+                                <Button type="primary" onClick={this.searchsave}>搜索</Button>
+                            </FormItem>
+                        </Form>
+                    </Col>
+                </Row>
+                <div className={styles.tablewrap}>
                     <div><span style={{fontSize:16,marginRight:80}}>导航仪</span>
-                         <span>系列 : {this.state.count}</span>
+                        <span>系列 : {this.state.count}</span>
                     </div>
                     <Table columns={columns}
-                      dataSource={this.state.data} pagination={this.state.pagination} loading={this.state.loading}
-                      onChange={this.handleTableChange}/>
-                  </div>
+                        dataSource={this.state.data} pagination={this.state.pagination} loading={this.state.loading}
+                        onChange={this.handleTableChange}/>
+                    </div>
                 <Form onSubmit={this.handleOk}>
-                  <Modal title={this.state.showadd?"新建":"编辑"} style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
-                   <FormItem label="系列" {...formItemLayout}>
-                        {getFieldDecorator('name', {initialValue:this.state.list,rules: [{ required: true, message: '必填' }],})
-                        (<Input style={{width:300}} />)}
-                    </FormItem>
-                  </Modal>
+                    <Modal title={this.state.showadd?"新建":"编辑"} style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
+                        <FormItem label="系列" {...formItemLayout}>
+                            {getFieldDecorator('name', {initialValue:this.state.list,rules: [{ required: true, message: '必填' }],})
+                            (<Input style={{width:300}} />)}
+                        </FormItem>
+                    </Modal>
                 </Form>
-            </div>
-    );
+            </div>   
+        );
     },
 }));
 

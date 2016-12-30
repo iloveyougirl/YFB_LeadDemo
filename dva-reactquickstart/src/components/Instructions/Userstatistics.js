@@ -42,8 +42,8 @@ const Userstatistics= Form.create()(React.createClass({
                 console.log('Received values of form: ', values);
                 console.log(store)
                 this.fetch(store);
-          }
-    });
+            }
+        });
     },
     /*日期创建时间*/
     onChange:function(date, dateString) {
@@ -92,7 +92,7 @@ const Userstatistics= Form.create()(React.createClass({
                         return false;
                     }
                 });
-             }
+            }
         });
     },
     handleCancel(e) {
@@ -116,14 +116,14 @@ const Userstatistics= Form.create()(React.createClass({
         console.log('params:', params);
         this.setState({ loading: true });
         reqwest({
-                url: 'http://qzzg.w2.youfen8.com/api/member',
-                method: 'GET',
-                data: {
-                    ...params,
+            url: 'http://qzzg.w2.youfen8.com/api/member',
+            method: 'GET',
+            data: {
+                 ...params,
             },
             type: 'json',
     }).then((data) => {
-            const pagination = this.state.pagination;
+        const pagination = this.state.pagination;
         // Read total count from server
         // pagination.total = data.totalCount;
         pagination.total = data.total;
@@ -186,20 +186,20 @@ const Userstatistics= Form.create()(React.createClass({
             <div className={styles.listwrap}>
                 <div className={styles.searchwrap}>
                     <Row>
-                      <Form inline>
-                        <Col span={8}>
-                          <FormItem label="手机号"  {...formItemLayout}>
-                            {getFieldDecorator('phone_number')
-                            (<Input placeholder="输入手机号" style={{ width: 200 }}/>)}
-                          </FormItem>
-                        </Col>
-                        <Col span={11}>
-                          <FormItem label="注册时间" {...formItemLayout}>
-                            {getFieldDecorator('range-picker')
-                            (<RangePicker onChange={this.onChange}/>)}
-                          </FormItem>
-                        </Col>
-                     </Form>
+                        <Form inline>
+                            <Col span={8}>
+                                <FormItem label="手机号"  {...formItemLayout}>
+                                    {getFieldDecorator('phone_number')
+                                    (<Input placeholder="输入手机号" style={{ width: 200 }}/>)}
+                                </FormItem>
+                            </Col>
+                            <Col span={11}>
+                                <FormItem label="注册时间" {...formItemLayout}>
+                                    {getFieldDecorator('range-picker')
+                                    (<RangePicker onChange={this.onChange}/>)}
+                                </FormItem>
+                            </Col>
+                        </Form>
                         <Col span={2}>
                             <Button type="primary" onClick={this.handleSubmit}>搜索</Button>
                         </Col>
@@ -209,23 +209,24 @@ const Userstatistics= Form.create()(React.createClass({
                     </Row>
                 </div>
                 <div className={styles.tablewrap}>
-                    <div><span style={{fontSize:16,marginRight:80}}>用户统计</span>
-                         <span>总用户数 :{this.state.count} </span>
+                    <div>
+                        <span style={{fontSize:16,marginRight:80}}>用户统计</span>
+                        <span>总用户数 :{this.state.count} </span>
                     </div>
                     <Table columns={columns}
                         dataSource={this.state.data} pagination={this.state.pagination} loading={this.state.loading}
                         onChange={this.handleTableChange}/>
                 </div>
                 <Form onSubmit={this.handleOk} >
-                  <Modal title="备注信息" style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
-                    <FormItem {...formItemLayout} label="备注">
-                     {getFieldDecorator('remark')
-                     (<Input style={{width:300}}/>)}
-                    </FormItem>
-                  </Modal>
+                    <Modal title="备注信息" style={{ top: 300 }} visible={this.state.visible} onOk={this.handleOk} htmlType="submit" onCancel={this.handleCancel}>
+                        <FormItem {...formItemLayout} label="备注">
+                            {getFieldDecorator('remark')
+                            (<Input style={{width:300}}/>)}
+                        </FormItem>
+                    </Modal>
                 </Form>
             </div>
-    );
+        );
     },
 }));
 

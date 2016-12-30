@@ -70,17 +70,17 @@ const Name = React.createClass({
     render(){
         return (
             <div onClick={this.showborder} className={this.state.showborder? styles.border1:styles.border2} onBlur={this.hiddenborder} tabIndex={-1}
-                 style={{width:'100%',height:120,background:'#F7F7F7',borderRadius:7}}
-                 onMouseEnter={this.showEdit} onMouseLeave={this.showEdit}>
-              {this.state.showEdit?<Button type="primary" className={styles.editbtn} style={{background:"#23c0fa"}} onClick={this.editInput}>编辑</Button>:null}
-              <div style={{paddingTop:8}}>说明书名称:</div>
-              <div><input defaultValue={this.state.name}  className={this.state.showbg? styles.bg1 : styles.bg2}
-                     style={{border:"none",textAlign:'center',fontSize:20,color:"#666",overflow:"hidden",width:"100%"}}
-                     disabled={this.state.disabled}  onBlur={this.blurinp}  ref="nameInput"/>
-              </div>
-              <div style={{paddingTop:5}}>创建时间:</div>
-              <div><Input value={this.state.time} style={{border:"none",textAlign:'center',fontSize:14,color:"#666"}}
-                  disabled /></div>
+                style={{width:'100%',height:120,background:'#F7F7F7',borderRadius:7}}
+                onMouseEnter={this.showEdit} onMouseLeave={this.showEdit}>
+                {this.state.showEdit?<Button type="primary" className={styles.editbtn} style={{background:"#23c0fa"}} onClick={this.editInput}>编辑</Button>:null}
+                <div style={{paddingTop:8}}>说明书名称:</div>
+                <div><input defaultValue={this.state.name}  className={this.state.showbg? styles.bg1 : styles.bg2}
+                    style={{border:"none",textAlign:'center',fontSize:20,color:"#666",overflow:"hidden",width:"100%"}}
+                    disabled={this.state.disabled}  onBlur={this.blurinp}  ref="nameInput"/>
+                </div>
+                <div style={{paddingTop:5}}>创建时间:</div>
+                <div><Input value={this.state.time} style={{border:"none",textAlign:'center',fontSize:14,color:"#666"}} disabled />
+                </div>
             </div>
        )
     }

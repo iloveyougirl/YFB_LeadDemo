@@ -7,19 +7,19 @@ const TabPane = Tabs.TabPane;
 
 
 const Instruction = React.createClass({
-render() {
+    render() {
         return (
             <div className={styles.listwrap}>
-              <Tabs defaultActiveKey="1" onChange={this.callback} animated={false}>
-                <TabPane tab={<span><Link to='/'>型号管理</Link></span>} key="1">
-                  <div>
-                    {this.props.children}
-                  </div>
-                </TabPane>
-                <TabPane tab="系列管理" key="2">
-                  <Listmanagement/>
-                </TabPane>
-              </Tabs>
+                <Tabs defaultActiveKey="1" onChange={this.callback} animated={false}>
+                    <TabPane tab={<span><Link to='/'>型号管理</Link></span>} key="1">
+                        <div>
+                            {this.props.children}
+                        </div>
+                    </TabPane>
+                    <TabPane tab="系列管理" key="2">
+                        <Listmanagement/>
+                    </TabPane>
+                </Tabs>
             </div>
         );
     },
