@@ -1,0 +1,19 @@
+.a{
+    width: 9rem;
+    height: 2rem;
+    border-radius: 7px;
+    background-color: #979797;
+    color: white;
+    position: absolute;
+    top: 7px;
+    left: 59px;
+    text-align: center;
+    line-height: 29px;
+}
+.b{
+    width: 80%;
+    margin: 10px auto;
+    border: 1px solid #E9e9e9;
+    border-radius: 5px;
+    padding: 0 10px;
+}
